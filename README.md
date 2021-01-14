@@ -1,4 +1,4 @@
-# IDAPython >= 7.4 
+## IDAPython >= 7.4 
 
 ### Clear output window 
 
@@ -43,4 +43,15 @@ def get_function_called(ea):
 addr = 0xdeadbeef
 if addr >= ida_ida.inf_get_min_ea() and addr <= ida_ida.inf_get_max_ea():
     print("Valid address!")
+```
+
+## PyQt5 related
+
+### Add QIcon without including a file (base64 encoded)
+```python
+toolbar = QtWidgets.QToolBar()
+saveImg = QtGui.QPixmap()
+saveImg.loadFromData(base64.b64decode("BASE64ENCODEDICON))
+saveAction = QtWidgets.QAction(QtGui.QIcon(saveImg), "Save", parent)
+toolbar.addAction(saveAction)
 ```
