@@ -4,7 +4,7 @@
 
 ```python
     form = ida_kernwin.find_widget("Output window")
-    ida_kernwin.activate_widget(form, True);
+    ida_kernwin.activate_widget(form, True)
     idaapi.process_ui_action("msglist:Clear")
 ```
 
@@ -36,4 +36,11 @@ def get_function_called(ea):
             if r.type == idautils.ida_xref.fl_CF or r.type == idautils.ida_xref.fl_CN:
                 funcs.append(r.to)
     return funcs
+```
+
+### Verify if address is mapped/valid
+```python
+addr = 0xdeadbeef
+if addr >= ida_ida.inf_get_min_ea() and addr <= ida_ida.inf_get_max_ea():
+    print("Valid address!")
 ```
