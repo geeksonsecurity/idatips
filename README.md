@@ -38,6 +38,18 @@ def get_function_called(ea):
     return funcs
 ```
 
+### Search for pattern across whole binary
+```python
+sequence = "83 F8 01"
+found_ea = ida_ida.inf_get_min_ea()-1
+end_ea = ida_ida.inf_get_max_ea()
+print(f"Looking for pattern in {hex(found_ea+1)}-{hex(end_ea)}")
+while True:
+    found_ea = idaapi.find_binary(found_ea+1, end_ea, needle, 16, idaapi.SEARCH_DOWN)
+    if found_ea == idaapi.BADADDR: break
+    print(f"Found at {hex(found_ea)}")
+```
+
 ### Verify if address is mapped/valid
 ```python
 addr = 0xdeadbeef
