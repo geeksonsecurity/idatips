@@ -57,6 +57,22 @@ if addr >= ida_ida.inf_get_min_ea() and addr <= ida_ida.inf_get_max_ea():
     print("Valid address!")
 ```
 
+## Debugging
+
+### Attach to a process
+
+```python
+target = "Process.exe"
+pis = ida_idd.procinfo_vec_t()
+count = ida_dbg.get_processes(pis)
+print(f"Found {count}")
+for p in pis:
+    print(f"{p.pid}: {p.name}")
+    if target in p.name:
+        print(f"Attaching to process {p.name}")
+        ida_dbg.attach_process(p.pid)
+```
+
 ## PyQt5 related
 
 ### Add QIcon without including a file (base64 encoded)
