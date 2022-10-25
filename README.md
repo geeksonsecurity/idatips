@@ -57,6 +57,13 @@ if addr >= ida_ida.inf_get_min_ea() and addr <= ida_ida.inf_get_max_ea():
     print("Valid address!")
 ```
 
+### Start
+
+```python
+from ida_dbg import start_process
+start_process()
+```
+
 ## Debugging
 
 ### Attach to a process
@@ -71,6 +78,31 @@ for p in pis:
     if target in p.name:
         print(f"Attaching to process {p.name}")
         ida_dbg.attach_process(p.pid)
+```
+
+### Add breakpoint
+```python
+from ida_dbg import add_bpt
+add_bpt(address)
+```
+
+### Refresh memory of debugger
+```python
+from ida_dbg import refresh_debugger_memory
+refresh_debugger_memory()
+```
+### Read memory
+```python
+from ida_bytes import *
+get_byte(ea, size)
+get_dword(ea)
+get_qword(ea)
+```
+
+### Read register
+```python
+from ida_dbg import get_reg_val
+rcx = get_reg_val("rcx")
 ```
 
 ## PyQt5 related
